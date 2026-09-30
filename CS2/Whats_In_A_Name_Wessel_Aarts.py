@@ -1,3 +1,18 @@
+
+"""
+Name: W. Aarts
+Description: What's in your name? - a menu program that manipulates and
+             interrogates a name. No string-class functions are used.
+Bugs: None known
+Bonus: title check, menu
+Date: 9/30/2026
+Log: 9/10/2026 Initial version
+     9/30/2026 Added menu and all functions for the "what's in a name" project
+"""
+
+
+
+
 import random
 
 
