@@ -120,7 +120,7 @@ def consonant_counter(name):
 
 
 def split_name(name):
-    """Break a full name into a list of its words (hand-built, no .split()).
+    """Break a full name into a list of its words ( no .split()).
     Builds one word at a time; each space ends a word and starts the next.
     Args: name (str) - the full name.
     Returns: list - the words as separate strings.
