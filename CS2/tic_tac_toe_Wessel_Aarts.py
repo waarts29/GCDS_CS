@@ -23,22 +23,59 @@ print(f" {grid[1][0]} | {grid[1][1]} | {grid[1][2]} ")
 print("-----------")
 print(f" {grid[2][0]} | {grid[2][1]} | {grid[2][2]} ")
 '''''
+import random 
+
 
 def display_board(board):
+    for i in range(len(board)):
+        print(" " + " | ".join(board[i]) + " ")
+        if i < len(board) - 1:
+            print("───┼───┼───")
+
+game_board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+
+display_board(game_board)
+input()
+
+
+
+def get_player_move(board, mark):
+    while True:
+        move = input(f"Player {mark}, enter row and column (e.g. 1 2): ").split()
+        if len(move) != 2 or not all(m.isdigit() for m in move):
+            print("Invalid input. Please enter two numbers separated by a space.")
+            continue
+
+
+
+def check_winner(board,mark):
     
-    for row in board:
+
+    if board[0][0] == mark and board[0][1] == mark and board[0][2] == mark:
+        return True
+    if board[1][0] == mark and board[1][1] == mark and board[1][2] == mark:
+        return True
+    if board[2][0] == mark and board[2][1] == mark and board[2][2] == mark:
+        return True
+
+    
+    if board[0][0] == mark and board[1][0] == mark and board[2][0] == mark:
+        return True
+    if board[0][1] == mark and board[1][1] == mark and board[2][1] == mark:
+        return True
+    if board[0][2] == mark and board[1][2] == mark and board[2][2] == mark:
+        return True
+
+    
+    if board[0][0] == mark and board[1][1] == mark and board[2][2] == mark:
+        return True
+    if board[0][2] == mark and board[1][1] == mark and board[2][0] == mark:
+        return True
+    
+
+    return False
         
-        print("\n---+---+---\n".join(row))
-
-
-lists = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
-board = lists
-
-
-display_board(board)
-
-
-
+        
 
 
 
