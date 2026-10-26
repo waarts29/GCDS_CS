@@ -1,4 +1,4 @@
-
+#PLAN WORK, WORK PLAN 
 ''''
 step 1. create a 3x3 grid 2 dimensional
 step 2. two players(human)
@@ -18,25 +18,28 @@ step 10. create grid grid = [
 step 11. player1 = "X"
 
 '''''
+
+
 import random
-
-
-
-
-
+ #also make sure cant be two of the same names
+ #make sure if random number is put in it breaks and restarts
 
 def display_board(board):
-    print (" 1   2   3")
-    for i in range(len(board)):
-        print(" " + " | ".join(board[i]) + " ")
-        if i < len(board) - 1:
-            print("───┼───┼───")
+    print("   1   2   3")
+    for i in range(3):
+        print(f"{i+1}  " + " | ".join(board[i]))
+        if i < 2:
+            print("  ───┼───┼───")
 
-game_board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 
-display_board(game_board)
-input()
 
+
+def tie_checker(board):
+    for row in board:
+        for cell in row:
+            if cell == " ":
+                return False
+    return True
 
 def check_winner(board,mark):
     
@@ -71,8 +74,10 @@ def check_winner(board,mark):
 def choose_first():
     player1 = input("Player 1 name: ")
     player2 = input("Player 2 name: ")
+    while player2 == player1:
+        player2 = input("Names can't be the same, Player 2 pick another name: ")
 
-    first = random.choice([player1, player2])   
+    first = random.choice([player1, player2])
     second = player2 if first == player1 else player1
     print(f"{first} goes first!")
 
@@ -84,32 +89,22 @@ def choose_first():
 
     other_mark = "O" if mark == "X" else "X"
     print(f"{first} is {mark}, {second} is {other_mark}")
-
     return first, mark, second, other_mark
 
 
-def tie_checker(board):
-    for row in board:
-        for cell in row:
-            if cell == "":
-                return False
-    return True
-
-
-
-
-def get_player_move(board, first, mark):
+def get_player_move(board, name, mark):
     while True:
         display_board(board)
-        move = input(f"{first} enter what row and column: ")
-        row = int(move[0])
-        column = int(move[1])
-        if board[row][column] == "":
+        move = input(f"{name}, enter row then column (like 13): ")
+        if move not in ["11", "12", "13", "21", "22", "23", "31", "32", "33"]:
+            print("Not a valid spot, enter row then column, look at the board for reference")
+            continue
+        row = int(move[0]) - 1
+        column = int(move[1]) - 1
+        if board[row][column] == " ":
             board[row][column] = mark
             return
         print("Spot taken, try again")
-
-
 
 
 def play_game():
@@ -134,13 +129,16 @@ def play_game():
         turn = 1 - turn  
 
 
+while True:
+    play_game()
+    if input("Play again? (y/n) ").lower() != "y":
+        break
 
 
-
-            
-                
-                    
-                
         
+
+
+
+
 
 
