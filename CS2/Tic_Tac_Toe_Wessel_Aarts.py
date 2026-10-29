@@ -1,30 +1,17 @@
-#PLAN WORK, WORK PLAN 
-''''
-step 1. create a 3x3 grid 2 dimensional
-step 2. two players(human)
-step 3. who goes first?
-step 4. x and o?
-step 5. ask user what box to choose, row column or 1,9 
-step 6. after each step check who has won, diagonal, vertical, horizontal 3 in a row.
-step 7. if grid {0}{0} == "x" and if {0}(1) and (0)(2) make function check win. 
-step 8. if x goes 9 time and no win ganme = tie
-step 9. would you liek to play again, if o break if yes reset also say who won each time keep score.
-step 10. create grid grid = [
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "]
-]
-
-step 11. player1 = "X"
-
-'''''
-
-
 import random
- #also make sure cant be two of the same names
- #make sure if random number is put in it breaks and restarts
+
 
 def display_board(board):
+    """
+    Description: Printss the current tic tac toe board to the screen with row
+    and col numbers so the players can see were to place there mark.
+
+    Parameters:
+    - board: a 3x3 list of lists that holds "X", "O", or " " for each spot
+
+    Returns:
+    - None: just prints the board
+    """
     print("   1   2   3")
     for i in range(3):
         print(f"{i+1}  " + " | ".join(board[i]))
@@ -32,18 +19,36 @@ def display_board(board):
             print("  ───┼───┼───")
 
 
-
-
 def tie_checker(board):
+    """
+    Description: Checks if the board is completly full. If every spot is taken
+    and nobody won, the game is a tie.
+
+    Parameters:
+    - board: a 3x3 list of lists representing the game board
+
+    Returns:
+     True if there are no empty spots left, False otherwise
+    """
     for row in board:
         for cell in row:
             if cell == " ":
                 return False
     return True
 
-def check_winner(board,mark):
-    
 
+def check_winner(board, mark):
+    """
+    Description: Checks all 3 rows, all 3 columns, and both diagonals to see
+    if the given mark has three in a row.
+
+    Parameters:
+    - board: a 3x3 list of lists representing the game board
+    - mark: the players mark to check for ("X" or "O")
+
+    Returns:
+     True if that mark has won, False if it hasnt
+    """
     if board[0][0] == mark and board[0][1] == mark and board[0][2] == mark:
         return True
     if board[1][0] == mark and board[1][1] == mark and board[1][2] == mark:
@@ -51,7 +56,6 @@ def check_winner(board,mark):
     if board[2][0] == mark and board[2][1] == mark and board[2][2] == mark:
         return True
 
-    
     if board[0][0] == mark and board[1][0] == mark and board[2][0] == mark:
         return True
     if board[0][1] == mark and board[1][1] == mark and board[2][1] == mark:
@@ -59,23 +63,30 @@ def check_winner(board,mark):
     if board[0][2] == mark and board[1][2] == mark and board[2][2] == mark:
         return True
 
-    
     if board[0][0] == mark and board[1][1] == mark and board[2][2] == mark:
         return True
     if board[0][2] == mark and board[1][1] == mark and board[2][0] == mark:
         return True
-    
 
     return False
 
 
-
-
 def choose_first():
+    """
+    Description: Asks both players for there names, makes sure the names are
+    not the same then randomly picks who goes first.
+
+    Parameters:
+    - None
+
+    Returns:
+    (first player name, first player mark, second player name,
+      second player mark)
+    """
     player1 = input("Player 1 name: ")
     player2 = input("Player 2 name: ")
     while player2 == player1:
-        player2 = input("Names can't be the same, Player 2 pick another name: ")
+        player2 = input(" Names can't be the same, Player 2 pick another name: ")
 
     first = random.choice([player1, player2])
     second = player2 if first == player1 else player1
@@ -93,6 +104,17 @@ def choose_first():
 
 
 def get_player_move(board, name, mark):
+    """
+    Description: Shows the board and asks the player to enter a move as row
+    then column (like 13). 
+    Parameters:
+    - board: a 3x3 list of lists representing the game board
+    - name: the name of the player who's turn it is
+    - mark: that players mark ("X" or "O")
+
+    Returns:
+    - None: the board is changed directly
+    """
     while True:
         display_board(board)
         move = input(f"{name}, enter row then column (like 13): ")
@@ -108,6 +130,17 @@ def get_player_move(board, name, mark):
 
 
 def play_game():
+    """
+    Description: Runs one full game of tic tac toe. Sets up a empty board,
+    picks who goes first, and then switches turns back and forth. After each
+    move it checks for a winner or a tie and ends the game if either happens.
+
+    Parameters:
+    - None
+
+    Returns:
+    - the winners name, or "Tie" if nobody won
+    """
     board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     first, mark, second, other_mark = choose_first()
     players = [(first, mark), (second, other_mark)]
@@ -120,25 +153,25 @@ def play_game():
         if check_winner(board, m):
             display_board(board)
             print(f"{name} wins!")
-            return
+            return name
         if tie_checker(board):
             display_board(board)
             print("It's a tie!")
-            return
+            return "Tie"
 
-        turn = 1 - turn  
+        turn = 1 - turn
 
+
+
+scores = {}
 
 while True:
-    play_game()
+    winner = play_game()
+    scores[winner] = scores.get(winner, 0) + 1
+
+    print("Score:")
+    for name in scores:
+        print(f"  {name}: {scores[name]}")
+
     if input("Play again? (y/n) ").lower() != "y":
         break
-
-
-        
-
-
-
-
-
-
