@@ -3,11 +3,10 @@ import random
 
 def display_board(board):
     """
-    Description: Printss the current tic tac toe board to the screen with row
-    and col numbers so the players can see were to place there mark.
+    Description: Printss the current tic tac toe board 
 
     Parameters:
-    - board: a 3x3 list of lists that holds "X", "O", or " " for each spot
+    - board:\
 
     Returns:
     - None: just prints the board
@@ -25,7 +24,7 @@ def tie_checker(board):
     and nobody won, the game is a tie.
 
     Parameters:
-    - board: a 3x3 list of lists representing the game board
+    - board: 
 
     Returns:
      True if there are no empty spots left, False otherwise
@@ -43,8 +42,8 @@ def check_winner(board, mark):
     if the given mark has three in a row.
 
     Parameters:
-    - board: a 3x3 list of lists representing the game board
-    - mark: the players mark to check for ("X" or "O")
+    - board: 
+    - mark: 
 
     Returns:
      True if that mark has won, False if it hasnt
@@ -80,8 +79,8 @@ def choose_first():
     - None
 
     Returns:
-    (first player name, first player mark, second player name,
-      second player mark)
+    first player name, first player mark, second player name,
+      second player mark
     """
     player1 = input("Player 1 name: ")
     player2 = input("Player 2 name: ")
@@ -105,12 +104,11 @@ def choose_first():
 
 def get_player_move(board, name, mark):
     """
-    Description: Shows the board and asks the player to enter a move as row
-    then column (like 13). 
+    Description: Shows the board and asks the player to enter a move 
     Parameters:
-    - board: a 3x3 list of lists representing the game board
-    - name: the name of the player who's turn it is
-    - mark: that players mark ("X" or "O")
+    - board 
+    - name
+    - mark
 
     Returns:
     - None: the board is changed directly
@@ -131,15 +129,13 @@ def get_player_move(board, name, mark):
 
 def play_game():
     """
-    Description: Runs one full game of tic tac toe. Sets up a empty board,
-    picks who goes first, and then switches turns back and forth. After each
-    move it checks for a winner or a tie and ends the game if either happens.
+    Description: Runs one full game of tic tac toe. 
 
     Parameters:
-    - None
+     None
 
     Returns:
-    - the winners name, or "Tie" if nobody won
+    the winners name, or "Tie" if nobody won
     """
     board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
     first, mark, second, other_mark = choose_first()
