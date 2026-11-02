@@ -6,10 +6,10 @@ def display_board(board):
     Description: Printss the current tic tac toe board 
 
     Parameters:
-    - board:\
+     board:\
 
     Returns:
-    - None: just prints the board
+     None just prints the board
     """
     print("   1   2   3")
     for i in range(3):
@@ -20,13 +20,13 @@ def display_board(board):
 
 def tie_checker(board):
     """
-    Description: Checks if the board is completly full. If every spot is taken
+    Description Checks if the board is completly full. If every spot is taken
     and nobody won, the game is a tie.
 
     Parameters:
-    - board: 
+     board: 
 
-    Returns:
+    Returns
      True if there are no empty spots left, False otherwise
     """
     for row in board:
@@ -41,9 +41,9 @@ def check_winner(board, mark):
     Description: Checks all 3 rows, all 3 columns, and both diagonals to see
     if the given mark has three in a row.
 
-    Parameters:
-    - board: 
-    - mark: 
+    Parameters
+     board: 
+     mark: 
 
     Returns:
      True if that mark has won, False if it hasnt
@@ -76,7 +76,7 @@ def choose_first():
     not the same then randomly picks who goes first.
 
     Parameters:
-    - None
+     None
 
     Returns:
     first player name, first player mark, second player name,
@@ -106,12 +106,12 @@ def get_player_move(board, name, mark):
     """
     Description: Shows the board and asks the player to enter a move 
     Parameters:
-    - board 
-    - name
-    - mark
+     board 
+     name
+     mark
 
-    Returns:
-    - None: the board is changed directly
+    Returns
+     None the board is changed directly
     """
     while True:
         display_board(board)
